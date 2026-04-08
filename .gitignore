@@ -1,8 +1,10 @@
+# Ignore cache
 __pycache__/
 *.pyc
 .DS_Store
-report.html
-scan_results_report.html
-changes_report.html
+
+# Ignore generated reports
+report.md
+*.html
 *.csv
 *.json
