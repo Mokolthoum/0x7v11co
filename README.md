@@ -1,66 +1,64 @@
-
 # 🛡️ 0x7v11co - Advanced Web Vulnerability Scanner
 
 <div align="center">
-  <h3>أداة متقدمة لفحص ثغرات الويب واكتشاف نقاط الضعف الأمنية</h3>
-  <p>تم تطويرها وتحسينها لتقديم تقارير احترافية وشاملة (عربي/إنجليزي) لمختبري الاختراق.</p>
+  <h3>Advanced Web Vulnerability Scanner and Security Assessment Tool</h3>
+  <p>Developed and enhanced to deliver professional, comprehensive reports (PDF-ready/HTML) for penetration testers.</p>
 </div>
 
 ---
 
-## 🌟 الميزات (Features)
-- **12 موديول فحص متخصص**: يشمل SQLi, XSS, LFI, RCE, اكتشاف الإدارة (Admin Enum)، رفع الملفات وغيرها.
-- **تصدير تقارير احترافية**: إمكانية تصدير التقارير بصيغة PDF-ready أو HTML تفاعلية باللغتين العربية والإنجليزية.
-- **زاحف الويب (Deep Crawler)**: لاستخراج جميع الروابط المخفية وبناء خريطة كاملة للموقع.
-- **تعدد المسارات (Multi-threading)**: أداء فائق السرعة عبر تحديد عدد مسارات الفحص.
-- **التخطي (WAF Bypass)**: آليات ذكية لتجاوز جدران الحماية (Web Application Firewalls).
-- **فحص معتمد (Authenticated Scan)**: دعم التمرير للكوكيز والجلسات (Cookies/Sessions) لفحص لوحات التحكم.
+## 🌟 Features
+- **12 Dedicated Scanning Modules**: Includes SQLi, XSS, LFI, RCE, Admin Panel Enum, File Upload vulnerabilities, and more.
+- **Professional Reporting**: Export beautifully formatted, PDF-ready HTML, CSV, or JSON reports.
+- **Deep Web Crawler**: Extract hidden links, map directories, and build a complete site structure.
+- **Multi-threading Engine**: Lightning-fast performance with customizable thread counts.
+- **WAF Bypass Capabilities**: Intelligent mechanisms to evade and bypass Web Application Firewalls.
+- **Authenticated Scanning**: Support for custom cookies and sessions to scan protected admin panels.
 
-## 🛠️ المتطلبات (Requirements)
-تأكد من توفر Python 3 وأدوات النيتورك الأساسية. يجب تثبيت الحزم المطلوبة قبل البدء:
+## 🛠️ Requirements
+Ensure Python 3 and basic networking tools are installed. Install required dependencies before starting:
 ```bash
 pip install -r requirements.txt
 ```
 
-## 🚀 طريقة التنصيب (Installation)
-انسخ هذا المستودع المحلي وابدأ الفحص مباشرة:
+## 🚀 Installation
+Clone this repository locally and start scanning immediately:
 ```bash
 git clone https://github.com/Mokolthoum/0x7v11co.git
 cd 0x7v11co
 pip install -r requirements.txt
 ```
 
-## 🎯 الاستخدام (Usage)
+## 🎯 Usage
 
-### 1️⃣ الفحص الشامل (Comprehensive Scan)
-قم بفحص الموقع باستخدام كل الموديولات المتاحة:
+### 1️⃣ Comprehensive Scan
+Scan the target using all available modules and the deep crawler:
 ```bash
 python3 main.py http://example.com --crawl
 ```
 
-### 2️⃣ الفحص السريع والمخصص (Custom Scan)
-يمكنك تحديد ثغرات معينة للبحث عنها بهدف تسريع العملية:
+### 2️⃣ Custom & Fast Scan
+Select specific vulnerabilities to look for, speeding up the process:
 ```bash
 python3 main.py http://example.com --sqli --xss
 ```
 
-### 3️⃣ استخراج تقارير باللغة العربية (Arabic Reports)
-لتحويل نتائج الفحص إلى تقرير مخصص واحترافي لتقديمه للعملاء:
+### 3️⃣ Generate Professional Reports
+Export your scan results into an interactive HTML or JSON/CSV report ready for clients:
 ```bash
-# التقرير سيخرج بشكل HTML أو CSV/JSON جاهز للطباعة كـ PDF
-python3 main.py http://example.com --html
+python3 main.py http://example.com --html --json
 ```
 
-## 📂 بنية المشروع
-```
+## 📂 Project Structure
+```text
 0x7v11co/
-├── main.py                 # نقطة الانطلاق لتشغيل الأداة
-├── modules/                # موديولات فحص الثغرات المستقلة (12 موديول)
-├── utils/                  # أدوات مساعدة (نظام توليد التقارير)
-├── requirements.txt        # المتطلبات والمكتبات التشغيلية
-└── reports/                # التقارير الناتجة (HTML, JSON, CSV) 
+├── main.py                 # Initial entry point and engine orchestrator
+├── modules/                # 12 Independent vulnerability scanning modules
+├── utils/                  # Helper utilities (Reporter, Colors, etc.)
+├── requirements.txt        # Python dependencies
+└── reports/                # Generated reports directory (HTML, JSON, CSV) 
 ```
 
 ---
-**تنويه أخلاقي (Disclaimer):**
-هذه الأداة مخصصة للاستخدام للمسؤولين عن الحماية والاختبارات الأمنية المصرح بها فقط. المطور غير مسؤول عن أي استخدام غير قانوني.
+**Disclaimer:**
+This tool is strictly intended for educational purposes and authorized security testing. The developer assumes no liability and is not responsible for any misuse or damage caused by this program.
