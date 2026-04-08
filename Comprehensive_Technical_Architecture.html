@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Comprehensive Technical Architecture - 0x7v11co</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Fira+Code:wght@400;500&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+@page{size:A4;margin:12mm}
+@media print{.no-print{display:none}body{background:#fff}.container{box-shadow:none}}
+body{font-family:'Inter',Arial,sans-serif;color:#1a1a2e;line-height:1.8;background:#eef2f7;padding:15px;font-size:14px}
+.container{max-width:950px;margin:0 auto;background:#fff;box-shadow:0 5px 30px rgba(0,0,0,.1)}
+.pbtn{position:fixed;top:20px;right:20px;background:#e94560;color:#fff;border:none;padding:12px 30px;border-radius:8px;font-family:'Inter';font-size:16px;font-weight:700;cursor:pointer;z-index:999;box-shadow:0 4px 15px rgba(233,69,96,.3)}
+
+.cover{background:linear-gradient(135deg,#0f3460,#16213e 60%,#1a1a2e);color:#fff;padding:80px 60px;text-align:center;page-break-after:always;min-height:95vh;display:flex;flex-direction:column;justify-content:center}
+.cover .logo{font-family:'Courier New',monospace;font-size:62px;font-weight:900;color:#e94560;letter-spacing:5px;text-shadow:0 0 20px rgba(233,69,96,.5)}
+.cover h1{font-size:32px;color:#a8d8ea;margin:20px 0 10px;font-weight:900}
+.cover .sub{font-size:18px;color:#7ec8e3;margin-bottom:40px;opacity:0.9}
+.badge-container{display:flex;gap:15px;justify-content:center;flex-wrap:wrap;margin:30px 0}
+.badge{background:rgba(255,255,255,.05);border:1px solid #7ec8e3;padding:15px 25px;border-radius:12px;}
+.badge .n{font-size:36px;font-weight:900;color:#00ff41;font-family:'Fira Code',monospace}
+.badge .l{font-size:13px;color:#a8d8ea;margin-top:5px}
+
+.content{padding:40px 60px}
+h1{color:#0f3460;font-size:26px;border-bottom:3px solid #e94560;padding-bottom:10px;margin:40px 0 20px;display:flex;align-items:center;gap:10px}
+h2{color:#16213e;font-size:20px;margin:30px 0 15px;border-bottom:1px solid #eee;padding-bottom:8px}
+h3{color:#e94560;font-size:16px;margin:20px 0 10px;font-weight:700}
+p{margin-bottom:15px;color:#333;text-align:justify}
+
+.card{border:1px solid #e0e0e0;border-radius:12px;padding:25px;margin:25px 0;background:#fcfcfc;box-shadow:0 2px 10px rgba(0,0,0,.02);page-break-inside:avoid}
+.card-header{display:flex;align-items:center;gap:15px;margin-bottom:15px}
+.ch-icon{font-size:35px;background:#eef2f7;width:60px;height:60px;display:flex;align-items:center;justify-content:center;border-radius:12px;}
+.ch-title{font-size:18px;font-weight:900;color:#0f3460}
+.ch-desc{font-size:13px;color:#666}
+
+.payload-box{background:#1e1e2e;color:#00ff41;padding:12px 15px;border-radius:8px;font-family:'Fira Code',monospace;font-size:13px;margin:10px 0;border-left:4px solid #e94560}
+.code-inline{background:#f0f0f0;color:#d63031;padding:2px 6px;border-radius:4px;font-family:'Fira Code',monospace;font-size:12px}
+
+ul{padding-left:25px;margin-bottom:15px}
+li{margin-bottom:8px;color:#444}
+li strong{color:#0f3460}
+
+table{width:100%;border-collapse:collapse;margin:20px 0;font-size:13px}
+th{background:#0f3460;color:#fff;padding:12px;text-align:left}
+td{padding:10px 12px;border-bottom:1px solid #eee;vertical-align:top}
+tr:nth-child(even){background:#f9f9f9}
+
+.workflow{display:flex;flex-direction:column;gap:10px;margin:20px 0}
+.wf-step{display:flex;gap:15px;background:#fff;border:1px solid #ddd;padding:15px;border-radius:8px;align-items:center}
+.wf-num{background:#e94560;color:#fff;font-weight:900;width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0}
+.wf-text{font-size:14px;color:#333}
+
+.footer{text-align:center;padding:30px;color:#999;font-size:12px;border-top:1px solid #eee;margin-top:50px}
+</style>
+</head>
+<body>
+<button class="pbtn no-print" onclick="window.print()">📄 Save Guide as PDF</button>
+<div class="container">
+
+<div class="cover">
+    <div class="logo">0x7v11co</div>
+    <h1>Comprehensive Technical Architecture</h1>
+    <div class="sub">In-depth documentation of the inner workings and algorithmic flow of the Security Scanner (Version 3.0)</div>
+    
+    <div class="badge-container">
+        <div class="badge"><div class="n">12</div><div class="l">Core Security Modules</div></div>
+        <div class="badge"><div class="n">50+</div><div class="l">Advanced Payloads & Attacks</div></div>
+        <div class="badge"><div class="n">4</div><div class="l">Built-in Auth Mechanisms</div></div>
+        <div class="badge"><div class="n">3</div><div class="l">Deep Crawl Levels</div></div>
+    </div>
+    
+    <div style="font-size:14px;color:#7ec8e3;margin-top:40px;line-height:2;text-align:left;max-width:480px;margin:40px auto;background:rgba(0,0,0,0.2);padding:20px;border-radius:10px;">
+        <strong>Document Objective:</strong> A detailed engineering explanation of the scanner's algorithms, how testing is conducted, and the payloads transmitted to the target.
+    </div>
+</div>
+
+<div class="content">
+
+<h1>1. Software Architecture & Workflow</h1>
+<p>The scanner is built using <strong>Python 3</strong>, strictly following an Object-Oriented Programming (OOP) paradigm. The system consists of a centralized orchestrator (<code>main.py</code>) that delegates operations to a list of fully isolated scanning modules, ensuring maximum scalability and fault tolerance.</p>
+
+<h3>Automated Scan Lifecycle:</h3>
+<div class="workflow">
+    <div class="wf-step">
+        <div class="wf-num">1</div>
+        <div class="wf-text"><strong>Session Initialization:</strong> Instantiates a core <code>requests.Session</code> object that acts as a singleton, maintaining persistency (Cookies, Headers) across all internal module requests.</div>
+    </div>
+    <div class="wf-step">
+        <div class="wf-num">2</div>
+        <div class="wf-text"><strong>Initial Reconnaissance:</strong> Executes standalone modules that do not require deep context (Directory Check, WAF identification, WordPress core checks, Port Sweeping).</div>
+    </div>
+    <div class="wf-step">
+        <div class="wf-num">3</div>
+        <div class="wf-text"><strong>Auto-Authentication:</strong> If credentials are provided via CLI, the tool crafts a dynamic request to log into the application. The authenticated session cookie is then propagated to the global state.</div>
+    </div>
+    <div class="wf-step">
+        <div class="wf-num">4</div>
+        <div class="wf-text"><strong>Deep Crawling:</strong> A spider traverses the application starting from the root directory, discovering hidden endpoints (up to a depth of 3 to prevent infinite loops and server overload).</div>
+    </div>
+    <div class="wf-step">
+        <div class="wf-num">5</div>
+        <div class="wf-text"><strong>Deep Vulnerability Analysis:</strong> Every discovered URL passes through an algorithmic filter. Forms, headers, and reflected parameters are stripped and sent to specialized modules (SQLi, XSS, LFI). <strong>Execution here is strictly Sequential</strong> to prevent SQLite database locks and session corruption on target servers.</div>
+    </div>
+</div>
+
+<h1>2. Intelligent Auto-Login System</h1>
+<p>Modern applications secure endpoints with rapidly expiring cookies or heavy token dependency. Instead of manually providing a cookie, the engine was built with a smart auto-login resolver.</p>
+<ul>
+    <li><strong>How it operates:</strong> It connects to the provided <code>--login-url</code> and completely parses the DOM utilizing <code>BeautifulSoup4</code>.</li>
+    <li><strong>Field Mapping:</strong> It analyzes all <code>&lt;input&gt;</code> elements. By examining the 'name' and 'type' attributes, it mathematically infers which field requests a username (user, email) and which requests a password.</li>
+    <li><strong>Hidden Token Extraction (The Complex Part):</strong> Modern frameworks (Django, Laravel, Rails) employ hidden anti-forgery tokens (e.g., <code>csrf_token</code>) that mutate per request. The scanner automatically extracts these dynamic inputs and merges them into the authentication POST payload.</li>
+    <li><strong>Success Verification:</strong> The authentication is only marked successful if the server responds with a Protocol Redirect (301, 302) accompanied by a <code>Set-Cookie</code> header granting a session identifier.</li>
+</ul>
+
+<h1>3. Deep Dive into Scanner Modules</h1>
+
+<!-- SQLi Scanner -->
+<div class="card">
+    <div class="card-header">
+        <div class="ch-icon">💉</div>
+        <div>
+            <div class="ch-title">SQL Injection Scanner (sqli_scan.py)</div>
+            <div class="ch-desc">Detects 3 different variants of database injections across POST forms and GET parameters</div>
+        </div>
+    </div>
+    <p>This module is responsible for analyzing form metadata and injecting payloads. It houses the following engines:</p>
+    
+    <h3>1. Error-Based SQLi</h3>
+    <p>It injects break characters such as <span class="code-inline">'</span> or <span class="code-inline">"</span> to intentionally crash the database query. The tool utilizes an embedded dictionary containing over 20 specific error signatures across diverse database technologies (MySQL, PostgreSQL, Oracle, SQLite, and specifically <strong>Django Framework specific exceptions</strong> like <code>django.db.utils</code> and <code>operationalerror</code>).</p>
+    
+    <h3>2. Login Bypass / Logic Alteration Detection</h3>
+    <p>The scanner submits a normal request alongside an injected request (e.g., <span class="code-inline">' OR '1'='1' --</span>). If the standard request yields a 200 HTTP response (Authentication Failed), while the injected request results in a 302 Redirect (Dashboard access granted), the application immediately logs a Critical Authentication Bypass vulnerability.</p>
+    
+    <h3>3. Boolean-Blind SQLi</h3>
+    <p>When database errors are suppressed by the developer, the tool uses logic inference (True/False boolean questions):</p>
+    <div class="payload-box">
+        [TRUE Payload]: admin' AND 1=1 -- <br>
+        [FALSE Payload]: admin' AND 1=2 -- 
+    </div>
+    <p>The tool calculates the byte length of the server's response. If the TRUE request length differs from the FALSE request length by more than 50 bytes, it definitively confirms blind logic injection.</p>
+</div>
+
+<!-- XSS Scanner -->
+<div class="card">
+    <div class="card-header">
+        <div class="ch-icon">📝</div>
+        <div>
+            <div class="ch-title">Cross-Site Scripting Scanner (xss_scan.py)</div>
+            <div class="ch-desc">Frontend script injection detection and context analysis</div>
+        </div>
+    </div>
+    <p>It goes far beyond merely sending basic scripts; it analyzes <strong>where</strong> the script is reflected (Context Tracking):</p>
+    <ul>
+        <li><strong>Generic Reflection:</strong> <span class="code-inline">&lt;script&gt;alert('XSS')&lt;/script&gt;</span></li>
+        <li><strong>Attribute Breakout:</strong> Attempts to break out of HTML input tags when the payload is trapped inside an attribute (e.g., an input value). Payload: <span class="code-inline">"&gt;&lt;script&gt;alert('XSS')&lt;/script&gt;</span></li>
+        <li><strong>Script Context Escape:</strong> Handles inputs injected directly into embedded JavaScript maps or variables: <span class="code-inline">'; alert(1); //</span></li>
+        <li><strong>Evidence Mechanism:</strong> The system verifies if the server applied proper sanitization (e.g., converting <code>&lt;</code> to <code>&amp;lt;</code>). A vulnerability is confirmed only if the payload reflects verbatim as valid HTML code.</li>
+    </ul>
+</div>
+
+<!-- LFI Scanner -->
+<div class="card">
+    <div class="card-header">
+        <div class="ch-icon">📂</div>
+        <div>
+            <div class="ch-title">Local File Inclusion (lfi_scan.py)</div>
+            <div class="ch-desc">Probes prohibited server directories to extract high-privilege system files</div>
+        </div>
+    </div>
+    <p>A high-severity module implementing two intelligent operational methodologies:</p>
+    <p><strong>Heuristic Parameter Extraction:</strong> The tool skips random testing. Instead, it parses HTML templates looking for contextual parameter names associated with file requests (e.g., <code>?file=...</code>, <code>?include=</code>, or <code>?path=</code>).</p>
+    <p><strong>WAF bypass through encoding:</strong> To bypass backend sanitization, the payloads utilize Double URL Encoding and Unicode Parsing anomalies:</p>
+    <div class="payload-box">
+        Standard: ../../../../etc/passwd<br>
+        Windows specific: C:\Windows\win.ini<br>
+        URL Bypass: ..%2f..%2f..%2fetc%2fpasswd<br>
+        Double Encoding: %252e%252e%252fetc%252fpasswd
+    </div>
+    <p>The response text is scanned cross-referencing system signatures (e.g., <code>root:x:0:0</code> for Linux or <code>[extensions]</code> for Windows) to definitively prove exploitation success.</p>
+</div>
+
+<!-- Upload Scanner -->
+<div class="card">
+    <div class="card-header">
+        <div class="ch-icon">📤</div>
+        <div>
+            <div class="ch-title">Unrestricted File Upload (upload_scan.py)</div>
+            <div class="ch-desc">Simulates remote code execution (RCE) via backdoor uploads</div>
+        </div>
+    </div>
+    <p>This module identifies DOM fields comprising <code>&lt;input type="file"&gt;</code> and forcefully tests the endpoint for lack of extension whitelisting.</p>
+    <ul>
+        <li><strong>Smart Auto-fill:</strong> To avoid server rejections based on incomplete forms, the engine heuristically populates required accompanying inputs (titles, descriptions, hidden hashes) before sending the request.</li>
+        <li><strong>In-Memory Attack Simulations (3 Vectors):</strong></li>
+    </ul>
+    <div class="payload-box">
+        [1] test_scan.php (MIME: application/x-php)<br>
+        Content: &lt;?php echo 'UPLOAD_TEST'; ?&gt;<br>
+        <br>
+        [2] test_scan.exe (MIME: application/x-msdownload)<br>
+        Content: MZ_FAKE_EXE_TEST  // Mimics executable header structure<br>
+        <br>
+        [3] test_scan.html (MIME: text/html)<br>
+        Content: &lt;script&gt;alert(1)&lt;/script&gt; // Mimics Stored XSS
+    </div>
+    <p>Response codes are analyzed (200, 201) along with the presence of success indicators ("uploaded", "success") in the DOM payload. Acceptance of the execution vector files flags a High severity vulnerability.</p>
+</div>
+
+<!-- Form & CSRF -->
+<div class="card">
+    <div class="card-header">
+        <div class="ch-icon">📋</div>
+        <div>
+            <div class="ch-title">Form & CSRF Analyzer (form_scan.py)</div>
+            <div class="ch-desc">Monitors sensitive state-changing operations for missing Cross-Site Request Forgery tokens</div>
+        </div>
+    </div>
+    <p>This unit reverse-engineers all <code>&lt;form&gt;</code> entities, extracting input names, target actions, and HTTP verbs (GET/POST).</p>
+    <p>Any POST form fundamentally alters database state (e.g., updating a profile, transferring funds). If the tool fails to identify a dynamic Anti-CSRF token input field within the form body, the system immediately registers a vulnerability based on standard framework token nomenclatures (e.g., <code>csrfmiddlewaretoken</code> for Django, or <code>_token</code> for Laravel).</p>
+</div>
+
+<!-- Crawler -->
+<div class="card">
+    <div class="card-header">
+        <div class="ch-icon">🕷️</div>
+        <div>
+            <div class="ch-title">Deep Web Crawler (crawler.py)</div>
+            <div class="ch-desc">An aggressive web spider designed specifically for reconnaissance</div>
+        </div>
+    </div>
+    <p>Unlike standard SEO spiders, this crawler maps out the entire internal attack surface area.</p>
+    <ul>
+        <li><strong>Redirect Unwrapping:</strong> It tracks 301/302 redirects, logging both the origin and the final resolution paths to ensure no endpoints are missed.</li>
+        <li><strong>Regex JavaScript Parsing:</strong> Disassembles <code>&lt;script&gt;</code> tags using Regular Expressions to identify buried API endpoints mapped inside frontend routing mechanisms.</li>
+        <li><strong>Static Asset Blacklisting:</strong> Automatically strips out images (JPG, PNG), stylesheets (CSS), and fonts. This optimizes the scanner speed exponentially, since static files hold no exploitable logical interactions.</li>
+    </ul>
+</div>
+
+<!-- Dir Enum -->
+<div class="card">
+    <div class="card-header">
+        <div class="ch-icon">📁</div>
+        <div>
+            <div class="ch-title">Directory Enumeration (dir_enum.py)</div>
+            <div class="ch-desc">Exposes forgotten backend infrastructure files</div>
+        </div>
+    </div>
+    <p>An engine relying on a high-speed Dictionary Attack. It uses an internal list of over 50 highly lethal paths frequently abandoned by infrastructure teams.</p>
+    <p>The Wordlist is strategically categorized:</p>
+    <ul>
+        <li>Admin Interfaces: <code>/admin</code>, <code>/admin-panel</code></li>
+        <li>Developer Traces: <code>/dev_logs</code>, <code>/backups</code>, <code>/console</code>, <code>/trace</code></li>
+        <li>Environment Variables: <code>/.env.example</code>, <code>/database_schema.sql</code></li>
+        <li>Hidden APIs: <code>/api/v1/internal/users</code>, <code>/api/v1/internal/transactions</code></li>
+    </ul>
+    <p>It interprets 403 Forbidden responses (Path exists but is protected), 200 OK (Publicly exposed), and 301/302 redirects to definitively map the backend filesystem.</p>
+</div>
+
+<h1>4. The Reporter & Export Ecosystem</h1>
+<p>The system utilizes a <code>Reporter</code> class that aggregates data from the core <code>VulnerabilityScanner</code> orchestrator. This engine employs a strict Deduplication Algorithm, parsing objects to ensure identical vulnerabilities (matching URL and Injection Type) are not printed twice.</p>
+<p>The system auto-compiles 4 distinct delivery formats for security teams:</p>
+<ol>
+    <li><strong>HTML Documentation:</strong> A visually colored, interactive chart displaying High, Critical, and Low severities.</li>
+    <li><strong>JSON Payload:</strong> Structures data as Arrays & Objects. Built for pipeline integration or SIEM systems.</li>
+    <li><strong>CSV Matrix:</strong> Exports parameters to Excel or statistical tooling.</li>
+    <li><strong>Markdown Documentation:</strong> Syntaxes the output for seamless push to internal Github security wikis.</li>
+</ol>
+<p>To adhere to global security compliance, every finding is dynamically tethered to specific mappings (OWASP Top 10 - 2021). (e.g., Injections sync to A03, Broken Access Control to A01).</p>
+
+<div class="footer">Next Generation Automated Security Discovery & Auditing | 0x7v11co | Release: April 2026</div>
+
+</div>
+</div>
+</body>
+</html>

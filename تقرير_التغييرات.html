@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8">
+<title>تقرير التغييرات والتحسينات - 0x7v11co</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+@page { size: A4; margin: 12mm; }
+@media print { .no-print { display: none; } body { background: white; } .container { box-shadow: none; } }
+body { font-family: 'Cairo', Arial, sans-serif; color: #1a1a2e; line-height: 1.8; background: #eef2f7; padding: 15px; font-size: 13px; }
+.container { max-width: 850px; margin: 0 auto; background: white; box-shadow: 0 5px 30px rgba(0,0,0,0.1); }
+.print-btn { position: fixed; top: 20px; left: 20px; background: #e94560; color: white; border: none; padding: 12px 30px; border-radius: 8px; font-family: 'Cairo'; font-size: 16px; font-weight: 700; cursor: pointer; z-index: 999; box-shadow: 0 4px 15px rgba(233,69,96,0.4); }
+.print-btn:hover { background: #c0392b; }
+
+.cover { background: linear-gradient(135deg, #0f3460, #16213e 60%, #1a1a2e); color: white; padding: 70px 50px; text-align: center; page-break-after: always; min-height: 95vh; display: flex; flex-direction: column; justify-content: center; }
+.cover .logo { font-family: 'Courier New', monospace; font-size: 48px; font-weight: bold; color: #e94560; letter-spacing: 4px; }
+.cover h1 { font-size: 28px; color: #a8d8ea; margin: 15px 0 5px; font-weight: 700; }
+.cover .sub { font-size: 16px; color: #7ec8e3; margin-bottom: 40px; }
+.stats-row { display: flex; justify-content: center; gap: 15px; margin: 30px 0; flex-wrap: wrap; }
+.stat-box { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 20px 25px; min-width: 130px; }
+.stat-box .num { font-size: 38px; font-weight: 900; color: #e94560; }
+.stat-box .txt { font-size: 12px; color: #a8d8ea; }
+.cover .date { font-size: 14px; color: #7ec8e3; margin-top: 35px; }
+
+.content { padding: 35px 45px; }
+h1 { color: #0f3460; font-size: 22px; border-bottom: 3px solid #e94560; padding-bottom: 8px; margin: 30px 0 15px; }
+h2 { color: #16213e; font-size: 17px; margin: 22px 0 10px; }
+
+table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px; }
+th { background: #0f3460; color: white; padding: 10px 12px; text-align: right; }
+td { padding: 8px 12px; border-bottom: 1px solid #eee; }
+tr:nth-child(even) { background: #f8f9fa; }
+
+.file-card { border: 1px solid #e8e8e8; border-radius: 10px; margin: 18px 0; overflow: hidden; page-break-inside: avoid; }
+.file-header { background: #0f3460; color: white; padding: 12px 18px; font-weight: 700; font-size: 14px; display: flex; justify-content: space-between; align-items: center; }
+.file-header .tag { background: #e94560; padding: 3px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+.file-header .tag-new { background: #27ae60; }
+.file-body { padding: 15px 18px; }
+.change { padding: 8px 0; border-bottom: 1px dotted #eee; display: flex; gap: 10px; align-items: flex-start; }
+.change:last-child { border-bottom: none; }
+.change-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 8px; flex-shrink: 0; }
+.dot-add { background: #27ae60; }
+.dot-fix { background: #3498db; }
+.dot-up { background: #f39c12; }
+
+.problem-box { border: 1px solid #eee; border-radius: 10px; margin: 15px 0; overflow: hidden; page-break-inside: avoid; }
+.problem-head { background: #fff5f5; padding: 12px 18px; font-weight: 700; color: #e94560; border-bottom: 1px solid #fdd; }
+.problem-body { padding: 15px 18px; font-size: 12px; }
+.problem-body .cause { background: #fff8f0; padding: 8px 12px; border-radius: 5px; margin: 6px 0; border-right: 3px solid #f39c12; }
+.problem-body .fix { background: #f0fff4; padding: 8px 12px; border-radius: 5px; margin: 6px 0; border-right: 3px solid #27ae60; }
+.problem-body pre { background: #1e1e2e; color: #00ff41; padding: 10px; border-radius: 6px; font-size: 11px; direction: ltr; text-align: left; margin: 6px 0; overflow-wrap: break-word; white-space: pre-wrap; }
+
+.cmd-section { background: #1e1e2e; border-radius: 10px; padding: 18px; margin: 15px 0; }
+.cmd-section .label { color: #a8d8ea; font-size: 11px; margin-bottom: 5px; }
+.cmd-section pre { color: #00ff41; font-size: 12px; direction: ltr; text-align: left; line-height: 1.6; }
+
+.footer { text-align: center; padding: 25px; color: #999; font-size: 11px; border-top: 1px solid #eee; margin-top: 30px; }
+</style>
+</head>
+<body>
+<button class="print-btn no-print" onclick="window.print()">📄 حفظ كـ PDF</button>
+<div class="container">
+
+<!-- ══════ غلاف ══════ -->
+<div class="cover">
+    <div class="logo">0x7v11co</div>
+    <h1>تقرير التغييرات والتحسينات</h1>
+    <div class="sub">جميع التعديلات التي أُجريت على أداة الفحص الأمني</div>
+    <div class="stats-row">
+        <div class="stat-box"><div class="num">9</div><div class="txt">ملفات مُعدّلة</div></div>
+        <div class="stat-box"><div class="num">1</div><div class="txt">ملف جديد</div></div>
+        <div class="stat-box"><div class="num">+300%</div><div class="txt">تحسّن بالاكتشاف</div></div>
+    </div>
+    <div class="stats-row">
+        <div class="stat-box"><div class="num">9→36</div><div class="txt">الثغرات المكتشفة</div></div>
+        <div class="stat-box"><div class="num">115</div><div class="txt">درجة الخطورة</div></div>
+    </div>
+    <div class="date">التاريخ: 5 أبريل 2026</div>
+</div>
+
+<!-- ══════ المحتوى ══════ -->
+<div class="content">
+
+<h1>📊 نظرة عامة — قبل وبعد</h1>
+<table>
+    <tr><th>المقياس</th><th>قبل التحسين</th><th>بعد التحسين</th><th>التحسّن</th></tr>
+    <tr><td><strong>الثغرات المكتشفة</strong></td><td>9</td><td><strong>36</strong></td><td>+300%</td></tr>
+    <tr><td><strong>أنواع الثغرات</strong></td><td>2 (Headers, Dirs)</td><td><strong>6 أنواع</strong></td><td>+200%</td></tr>
+    <tr><td><strong>درجة الخطورة</strong></td><td>26 (HIGH)</td><td><strong>115 (CRITICAL)</strong></td><td>+342%</td></tr>
+    <tr><td><strong>المصادقة</strong></td><td>❌ غير موجودة</td><td><strong>✅ تسجيل دخول تلقائي</strong></td><td>ميزة جديدة</td></tr>
+    <tr><td><strong>عمق الزحف</strong></td><td>مستويين</td><td><strong>3 مستويات</strong></td><td>+50%</td></tr>
+    <tr><td><strong>قاموس الكلمات</strong></td><td>26 كلمة</td><td><strong>50+ كلمة</strong></td><td>+92%</td></tr>
+    <tr><td><strong>SQL Injection</strong></td><td>❌ لم يُكتشف</td><td><strong>✅ 2 ثغرة</strong></td><td>جديد</td></tr>
+    <tr><td><strong>XSS</strong></td><td>❌ لم يُكتشف</td><td><strong>✅ 5 ثغرات</strong></td><td>جديد</td></tr>
+    <tr><td><strong>رفع ملفات خطيرة</strong></td><td>❌ لم يُكتشف</td><td><strong>✅ 2 ثغرة</strong></td><td>جديد</td></tr>
+    <tr><td><strong>CSRF</strong></td><td>❌ لم يُكتشف</td><td><strong>✅ 5 ثغرات</strong></td><td>جديد</td></tr>
+</table>
+
+<!-- ══════ تفاصيل الملفات ══════ -->
+<h1>📁 تفاصيل التغييرات لكل ملف</h1>
+
+<!-- main.py -->
+<div class="file-card">
+    <div class="file-header"><span>main.py — الملف الرئيسي</span><span class="tag">تعديل</span></div>
+    <div class="file-body">
+        <div class="change"><div class="change-dot dot-add"></div><div><strong>نظام تسجيل الدخول التلقائي:</strong> أُضيفت خيارات <code>--login-url</code> و <code>--username</code> و <code>--password</code>. الأداة تفتح صفحة الدخول، تستخرج حقول النموذج، تُرسل البيانات، وتحفظ session cookie للاستخدام في الفحص.</div></div>
+        <div class="change"><div class="change-dot dot-add"></div><div><strong>دمج وحدة فحص رفع الملفات:</strong> أُضيف <code>UploadScanner</code> كوحدة جديدة مع خيار <code>--upload</code>.</div></div>
+        <div class="change"><div class="change-dot dot-fix"></div><div><strong>إزالة التكرارات:</strong> دالة <code>deduplicate_vulnerabilities()</code> تزيل الثغرات المتكررة تلقائياً قبل التقرير.</div></div>
+        <div class="change"><div class="change-dot dot-fix"></div><div><strong>فحص متتابع:</strong> تغيير Phase 3 من threads إلى sequential لحماية cookies الجلسة.</div></div>
+        <div class="change"><div class="change-dot dot-fix"></div><div><strong>توقيت المصادقة:</strong> نقل auto-login إلى ما بعد Phase 1 لتجنب خطأ SQLite database is locked.</div></div>
+        <div class="change"><div class="change-dot dot-up"></div><div><strong>تتبع النماذج:</strong> إضافة set لتتبع النماذج المفحوصة وتجنب فحص نفس النموذج مراراً.</div></div>
+    </div>
+</div>
+
+<!-- dir_enum.py -->
+<div class="file-card">
+    <div class="file-header"><span>modules/dir_enum.py — اكتشاف المسارات</span><span class="tag">تعديل</span></div>
+    <div class="file-body">
+        <div class="change"><div class="change-dot dot-up"></div><div><strong>توسيع القاموس من 26 إلى 50+ كلمة:</strong><br>
+        • إدارية: admin-panel, admin_panel<br>
+        • مستخدم: account, accounts, logout<br>
+        • ميزات: search, transfer, support, documents, upload<br>
+        • حساسة: backups, database, dev_logs, debug<br>
+        • API: api/v1/internal/users, accounts, transactions<br>
+        • ملفات: .env.example, .env.backup, .gitignore, database_schema.sql, sitemap.xml<br>
+        • تطوير: server-status, phpinfo.php, console, trace
+        </div></div>
+    </div>
+</div>
+
+<!-- crawler.py -->
+<div class="file-card">
+    <div class="file-header"><span>modules/crawler.py — زاحف الويب</span><span class="tag">تعديل</span></div>
+    <div class="file-body">
+        <div class="change"><div class="change-dot dot-add"></div><div><strong>تتبع إعادة التوجيه:</strong> يتابع 301/302 ويُضيف الوجهة النهائية.</div></div>
+        <div class="change"><div class="change-dot dot-add"></div><div><strong>اكتشاف form actions:</strong> يستخرج روابط النماذج كمسارات إضافية.</div></div>
+        <div class="change"><div class="change-dot dot-add"></div><div><strong>استخراج URLs من JavaScript:</strong> يبحث عن روابط مدمجة في كود JS.</div></div>
+        <div class="change"><div class="change-dot dot-up"></div><div><strong>زيادة العمق:</strong> من max_depth=2 إلى max_depth=3.</div></div>
+    </div>
+</div>
+
+<!-- form_scan.py -->
+<div class="file-card">
+    <div class="file-header"><span>modules/form_scan.py — فحص النماذج</span><span class="tag">تعديل</span></div>
+    <div class="file-body">
+        <div class="change"><div class="change-dot dot-add"></div><div><strong>كشف CSRF المفقود:</strong> يفحص كل نموذج POST بحثاً عن tokens الحماية (Django, Laravel, Rails, .NET).</div></div>
+        <div class="change"><div class="change-dot dot-add"></div><div><strong>كشف حقول رفع الملفات:</strong> يحدد النماذج التي تحتوي input type="file".</div></div>
+        <div class="change"><div class="change-dot dot-add"></div><div><strong>دعم عناصر إضافية:</strong> textarea و select بالإضافة لـ input.</div></div>
+    </div>
+</div>
+
+<!-- header_scan.py -->
+<div class="file-card">
+    <div class="file-header"><span>modules/header_scan.py — فحص الأمان</span><span class="tag">تعديل</span></div>
+    <div class="file-body">
+        <div class="change"><div class="change-dot dot-add"></div><div><strong>فحص أمان Cookies:</strong> يتحقق من وجود HttpOnly و Secure flags على جميع cookies الاستجابة.</div></div>
+    </div>
+</div>
+
+<!-- sqli_scan.py -->
+<div class="file-card">
+    <div class="file-header"><span>modules/sqli_scan.py — فحص SQL Injection</span><span class="tag">تعديل</span></div>
+    <div class="file-body">
+        <div class="change"><div class="change-dot dot-add"></div><div><strong>كشف Login Bypass:</strong> يقارن استجابة SQLi مع استجابة عادية — إذا SQLi أعطى 302 والعادي أعطى 200 = Login Bypass!</div></div>
+        <div class="change"><div class="change-dot dot-add"></div><div><strong>Boolean-Blind SQLi:</strong> يُرسل AND 1=1 (TRUE) و AND 1=2 (FALSE) ويقارن حجم الاستجابة.</div></div>
+        <div class="change"><div class="change-dot dot-up"></div><div><strong>أخطاء Django/Python:</strong> إضافة operationalerror, django.db.utils, psycopg2, pymysql, sqlite3.</div></div>
+        <div class="change"><div class="change-dot dot-up"></div><div><strong>payloads جديدة:</strong> Union Select و Error-based payloads.</div></div>
+    </div>
+</div>
+
+<!-- lfi_scan.py -->
+<div class="file-card">
+    <div class="file-header"><span>modules/lfi_scan.py — فحص تضمين الملفات المحلية</span><span class="tag">تعديل</span></div>
+    <div class="file-body">
+        <div class="change"><div class="change-dot dot-add"></div><div><strong>تحليل روابط الصفحة:</strong> يبحث عن جميع الروابط التي تحتوي parameters مثل file, page, doc, path, include, template, view.</div></div>
+        <div class="change"><div class="change-dot dot-up"></div><div><strong>payloads متنوعة:</strong> path traversal, absolute path, double encoding, أنظمة Linux و Windows.</div></div>
+    </div>
+</div>
+
+<!-- upload_scan.py -->
+<div class="file-card">
+    <div class="file-header"><span>modules/upload_scan.py — فحص رفع الملفات</span><span class="tag tag-new">ملف جديد</span></div>
+    <div class="file-body">
+        <div class="change"><div class="change-dot dot-add"></div><div><strong>فحص رفع ملفات خطيرة:</strong> يبحث عن نماذج الرفع ويحاول رفع:<br>
+        • test_scan.php — محاكاة PHP web shell<br>
+        • test_scan.exe — ملف تنفيذي<br>
+        • test_scan.html — ملف HTML مع JavaScript</div></div>
+        <div class="change"><div class="change-dot dot-add"></div><div><strong>ملء النماذج تلقائياً:</strong> يملأ الحقول المخفية والنصية بقيم آمنة.</div></div>
+    </div>
+</div>
+
+<!-- reporter.py -->
+<div class="file-card">
+    <div class="file-header"><span>utils/reporter.py — التقارير</span><span class="tag">تعديل</span></div>
+    <div class="file-body">
+        <div class="change"><div class="change-dot dot-add"></div><div><strong>تصنيفات OWASP جديدة:</strong> CSRF → A01:2021, Cookie → A05:2021, Upload → A04:2021.</div></div>
+        <div class="change"><div class="change-dot dot-add"></div><div><strong>نصائح إصلاح:</strong> توصيات لكل نوع ثغرة جديد.</div></div>
+    </div>
+</div>
+
+<!-- ══════ حل المشاكل ══════ -->
+<h1>🛠️ دليل حل المشاكل</h1>
+
+<div class="problem-box">
+    <div class="problem-head">❌ المشكلة: Auto-login failed</div>
+    <div class="problem-body">
+        <div class="cause"><strong>السبب:</strong> قاعدة بيانات SQLite مقفلة من اتصالات الفحص السابقة.</div>
+        <div class="fix"><strong>الحل:</strong></div>
+        <pre>kill $(lsof -i :8000 -t) 2>/dev/null
+sleep 2
+cd /Users/mohadreamer/AbaNeu
+source venv/bin/activate
+python3 manage.py runserver 8000 &
+sleep 3
+# ثم أعد الفحص</pre>
+    </div>
+</div>
+
+<div class="problem-box">
+    <div class="problem-head">❌ المشكلة: Connection refused</div>
+    <div class="problem-body">
+        <div class="cause"><strong>السبب:</strong> السيرفر غير مشغّل.</div>
+        <div class="fix"><strong>الحل:</strong></div>
+        <pre>cd /Users/mohadreamer/AbaNeu && source venv/bin/activate
+python3 manage.py runserver 8000 &</pre>
+    </div>
+</div>
+
+<div class="problem-box">
+    <div class="problem-head">❌ المشكلة: That port is already in use</div>
+    <div class="problem-body">
+        <div class="cause"><strong>السبب:</strong> عملية أخرى تستخدم البورت 8000.</div>
+        <div class="fix"><strong>الحل:</strong></div>
+        <pre>kill -9 $(lsof -i :8000 -t)
+sleep 2
+python3 manage.py runserver 8000 &</pre>
+    </div>
+</div>
+
+<div class="problem-box">
+    <div class="problem-head">❌ المشكلة: لم يُكتشف سوى Headers و Directories</div>
+    <div class="problem-body">
+        <div class="cause"><strong>السبب:</strong> فشل تسجيل الدخول فالأداة لم تصل للصفحات المحمية.</div>
+        <div class="fix"><strong>الحل:</strong> أعد تشغيل السيرفر (انظر المشكلة الأولى) ثم أعد الفحص.</div>
+    </div>
+</div>
+
+<!-- ══════ الأوامر ══════ -->
+<h1>🚀 أوامر التشغيل</h1>
+
+<h2>الأمر الكامل للفحص الشامل</h2>
+<div class="cmd-section">
+    <div class="label">الأمر الرئيسي:</div>
+    <pre>cd /Users/mohadreamer/0x7v11co && source venv/bin/activate
+python3 main.py http://127.0.0.1:8000 --full --verbose --export all \
+  --login-url http://127.0.0.1:8000/login/ \
+  --username john --password password123</pre>
+</div>
+
+<h2>أوامر بديلة</h2>
+<div class="cmd-section">
+    <pre># فحص سريع بدون تسجيل دخول:
+python3 main.py http://127.0.0.1:8000 --fast
+
+# SQLi + XSS فقط:
+python3 main.py http://127.0.0.1:8000 --sqli --xss
+
+# فحص المسارات فقط:
+python3 main.py http://127.0.0.1:8000 --dir-enum --verbose
+
+# فحص رفع الملفات فقط:
+python3 main.py http://127.0.0.1:8000 --upload \
+  --login-url http://127.0.0.1:8000/login/ \
+  --username john --password password123</pre>
+</div>
+
+<h2>جدول جميع الخيارات</h2>
+<table>
+    <tr><th>الخيار</th><th>الوظيفة</th></tr>
+    <tr><td><code>--full</code></td><td>فحص شامل (كل الوحدات)</td></tr>
+    <tr><td><code>--fast</code></td><td>فحص سريع (Headers + Forms + WP)</td></tr>
+    <tr><td><code>--headers</code></td><td>فحص Security Headers</td></tr>
+    <tr><td><code>--forms</code></td><td>اكتشاف النماذج + CSRF</td></tr>
+    <tr><td><code>--sqli</code></td><td>فحص SQL Injection</td></tr>
+    <tr><td><code>--xss</code></td><td>فحص XSS</td></tr>
+    <tr><td><code>--lfi</code></td><td>فحص تضمين الملفات المحلية</td></tr>
+    <tr><td><code>--dir-enum</code></td><td>اكتشاف المسارات</td></tr>
+    <tr><td><code>--upload</code></td><td>فحص رفع الملفات</td></tr>
+    <tr><td><code>--login-url</code></td><td>رابط صفحة الدخول</td></tr>
+    <tr><td><code>--username</code></td><td>اسم المستخدم</td></tr>
+    <tr><td><code>--password</code></td><td>كلمة المرور</td></tr>
+    <tr><td><code>--cookie</code></td><td>Cookie يدوي</td></tr>
+    <tr><td><code>--export</code></td><td>تصدير: json / csv / md / all</td></tr>
+    <tr><td><code>--verbose / -v</code></td><td>عرض التفاصيل</td></tr>
+</table>
+
+<div class="footer">0x7v11co v3.0 — تقرير التغييرات والتحسينات | 5 أبريل 2026</div>
+</div>
+</div>
+</body>
+</html>
