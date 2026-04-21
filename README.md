@@ -1,4 +1,4 @@
-# 🛡️ 0x7v11co - Advanced Web Vulnerability Scanner
+# 🛡️ AXON - Advanced Web Vulnerability Scanner
 
 <div align="center">
   <h3>Next-Generation Web Vulnerability Scanner and Security Assessment Tool</h3>
@@ -75,7 +75,7 @@ python3 main.py http://example.com --threads 20 --admin --subdomain
 
 ## 📊 Automated Client Reporting 
 
-One of the most powerful features of **0x7v11co** is its enterprise-grade reporting engine. You can effortlessly generate reports ready to be delivered to developers or clients.
+One of the most powerful features of **AXON** is its enterprise-grade reporting engine. You can effortlessly generate reports ready to be delivered to developers or clients.
 
 - **Generate HTML/PDF-ready Report (Highly Recommended):**
   This creates a visually stunning interactive dashboard that can be printed as a PDF.
@@ -95,7 +95,7 @@ One of the most powerful features of **0x7v11co** is its enterprise-grade report
 
 ## 📂 Architecture Diagram
 ```text
-0x7v11co/
+AXON/
 ├── main.py                 # Core orchestrator and argument parser
 ├── modules/                # Directory containing the 12 scan engines
 ├── utils/                  # Reporting modules (reporter.py) and CLI styling

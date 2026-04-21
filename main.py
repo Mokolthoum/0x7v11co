@@ -35,7 +35,7 @@ from rich.text import Text
 from rich import box
 
 def print_banner():
-    """Display the 0x7v11co banner"""
+    """Display the AXON banner"""
     banner = r"""
 
 #   ___           _____           _____           ___  
@@ -177,7 +177,7 @@ def run_scanner(scanner_class, target, session, *args):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="0x7v11co: Advanced Web Vulnerability Scanner",
+        description="AXON: Advanced Web Vulnerability Scanner",
         formatter_class=argparse.RawTextHelpFormatter,
         epilog="Examples:\n  python3 main.py http://example.com\n  python3 main.py http://example.com --full --threads 10\n  python3 main.py http://example.com --cookie 'session=abc' --export all\n  python3 main.py http://example.com --full --login-url http://example.com/login/ --username admin --password admin123"
     )
@@ -266,7 +266,7 @@ def main():
 
     # Session Setup
     session = requests.Session()
-    session.headers.update({'User-Agent': '0x7v11co/3.0 (Security Scanner)'})
+    session.headers.update({'User-Agent': 'AXON/3.0 (Security Scanner)'})
     
     has_auth = False
     
